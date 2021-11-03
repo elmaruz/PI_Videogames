@@ -1,0 +1,83 @@
+import axios from "axios";
+
+export function getVids() {
+  return function (dispatch) {
+    axios.get(`http://localhost:3001/videogames`).then((videogames) => {
+      dispatch({ type: "GET_VIDS", payload: videogames.data });
+    });
+  };
+}
+
+export function getDetails(id) {
+  return function (dispatch) {
+    axios.get(`http://localhost:3001/videogame/${id}`).then((details) => {
+      dispatch({ type: "GET_DETAILS", payload: details.data });
+    });
+  };
+}
+
+export function searchVids(id) {
+  return function (dispatch) {
+    axios.get(`http://localhost:3001/videogames?name=${id}`).then((search) => {
+      dispatch({ type: "SEARCH_VIDS", payload: search.data });
+    });
+  };
+}
+
+// export function sortVids(order) {
+//   return {
+//     type: "SORT_VIDS",
+//     payload: order,
+//   };
+// }
+
+export function getGenres() {
+  return function (dispatch) {
+    axios.get(`http://localhost:3001/genres`).then((genres) => {
+      dispatch({ type: "GET_GENRES", payload: genres.data });
+    });
+  };
+}
+
+export function filterGenres(genre) {
+  return {
+    type: "FILTER_GENRES",
+    payload: genre,
+  };
+}
+
+// export function sortFilter(sort, genre) {
+//   return {
+//     type: "SORTFILTER",
+//     payload: { sort, genre },
+//   };
+// }
+
+export function searchFilter(search, genre) {
+  return {
+    type: "SEARCHFILTER",
+    payload: { search, genre },
+  };
+}
+
+// export function sortFilterSearch(sort, genre, search) {
+//   return {
+//     type: "SFS",
+//     payload: { sort, genre, search },
+//   };
+// }
+
+export function createGame(obj) {
+  return function (dispatch) {
+    axios.post(`http://localhost:3001/videogame`, obj).then((r) => {
+      dispatch({ type: "CREATE_GAME", payload: r.data });
+    });
+  };
+}
+
+export function selectDb(name, search) {
+  return {
+    type: "SELECT_DB",
+    payload: { name, search },
+  };
+}

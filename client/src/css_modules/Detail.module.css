@@ -1,0 +1,16 @@
+.img {
+  width: 800px;
+  height: 500px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.desc {
+  margin: 10px;
+  width: 800px;
+}
