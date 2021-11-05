@@ -1,13 +1,21 @@
+@font-face {
+  font-family: PressStart2P;
+  src: url(../fonts/PressStart2P-vaV7.ttf);
+  font-weight: normal;
+}
+
 .master {
-  /* background-image: url("../img/wp2343919.jpg");
+  background-image: linear-gradient(
+    to bottom,
+    rgb(0, 0, 0) 0%,
+    rgb(0, 0, 0) 200%
+  );
   background-repeat: no-repeat;
   background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 1400px; */
-  background-color: rgb(87, 0, 87);
 }
 
 .macro {
@@ -32,8 +40,27 @@
 }
 
 .btn {
+  font-family: PressStart2P;
   padding: 10px;
   margin: 10px;
+}
+
+.create {
+  font-family: PressStart2P;
+  padding: 10px;
+  /* border-radius: 10px; */
+  background-color: red;
+  color: white;
+  border-width: 2px;
+  border-style: solid;
+  border-color: white;
+  cursor: pointer;
+}
+
+.create:active {
+  background-color: red;
+  box-shadow: 0 5px #666;
+  transform: translateY(2px);
 }
 
 /* .master {

@@ -10,16 +10,14 @@ import CreateGame from "./components/CreateGame.jsx";
 function App() {
   return (
     <Router>
-      <React.Fragment>
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/videogames" component={GameDisplay} def={""} />
-        <Route
-          exact
-          path="/videogames/:id"
-          component={({ match }) => <Detail id={match.params.id} />}
-        />
-        <Route path="/create" component={CreateGame} />
-      </React.Fragment>
+      <Route exact path="/" component={Landing} />
+      <Route exact path="/videogames" component={GameDisplay} def={""} />
+      <Route
+        exact
+        path="/videogames/:id"
+        component={({ match }) => <Detail id={match.params.id} />}
+      />
+      <Route path="/create" component={CreateGame} />
     </Router>
   );
 }

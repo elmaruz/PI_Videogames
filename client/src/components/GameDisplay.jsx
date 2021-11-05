@@ -30,7 +30,7 @@ export default function GameDisplay({ def }) {
   let [ratings, setRatings] = useState("");
   let [db, setDb] = useState("");
 
-  if (ratings) {
+  if (ratings && !sort) {
     if (ratings === "ASC") {
       vids.sort(function (a, b) {
         return a.rating - b.rating;
@@ -40,20 +40,8 @@ export default function GameDisplay({ def }) {
         return b.rating - a.rating;
       });
     }
-    if (sort) {
-      vids.sort((a, b) => {
-        if (a.name.toLowerCase() > b.name.toLowerCase()) {
-          return sort === "ASC" ? 1 : -1;
-        }
-        if (a.name.toLowerCase() < b.name.toLowerCase()) {
-          return sort === "ASC" ? -1 : 1;
-        }
-        return 0;
-      });
-    }
   }
-
-  if (sort) {
+  if (sort && !ratings) {
     vids.sort((a, b) => {
       if (a.name.toLowerCase() > b.name.toLowerCase()) {
         return sort === "ASC" ? 1 : -1;
@@ -63,16 +51,26 @@ export default function GameDisplay({ def }) {
       }
       return 0;
     });
-    if (ratings) {
-      if (ratings === "ASC") {
-        vids.sort(function (a, b) {
-          return a.rating - b.rating;
-        });
-      } else if (ratings === "DESC") {
-        vids.sort(function (a, b) {
-          return b.rating - a.rating;
-        });
+  }
+
+  if (sort && ratings) {
+    vids.sort((a, b) => {
+      if (a.name.toLowerCase() > b.name.toLowerCase()) {
+        return sort === "ASC" ? 1 : -1;
       }
+      if (a.name.toLowerCase() < b.name.toLowerCase()) {
+        return sort === "ASC" ? -1 : 1;
+      }
+      return 0;
+    });
+    if (ratings === "ASC") {
+      vids.sort(function (a, b) {
+        return a.rating - b.rating;
+      });
+    } else if (ratings === "DESC") {
+      vids.sort(function (a, b) {
+        return b.rating - a.rating;
+      });
     }
   }
 
@@ -91,9 +89,9 @@ export default function GameDisplay({ def }) {
       dispatch(filterGenres(genre));
     }
     if (db) {
-      dispatch(selectDb(db, search));
+      dispatch(selectDb(db, search, genre));
     }
-  }, [search, genre, db]);
+  }, [search, genre, db, sort, ratings]);
 
   function nextPage() {
     let maxPages = Math.floor(vids.length / 15);
@@ -123,6 +121,7 @@ export default function GameDisplay({ def }) {
 
   function onSort(value) {
     setSort(value);
+    console.log(sort);
   }
 
   function onFilterGen(value) {
@@ -137,36 +136,27 @@ export default function GameDisplay({ def }) {
     setDb(value);
   }
 
-  function reset(value) {
-    onFilterGen(value);
-    setGenre(value);
-    setSort(value);
-    setSearch(value);
-    setPage(0);
-    setRatings("");
-    setDb("");
-  }
-
   return (
     <div className={`${styles.master}`}>
       <div className={`${styles.macro}`}>
+        <FilterDb onDb={onDb} />
         <SortAZ onSort={onSort} />
+        <SortRating onRating={onRating} />
         <Searchbar onSearch={onSearch} onSort={onSort} />
         <FilterGen genres={genres} onFilterGen={onFilterGen} />
-        <SortRating onRating={onRating} />
-        <FilterDb onDb={onDb} />
-        <button onClick={() => reset(def)}>Reset</button>
-        <Link to="/create">Create Game</Link>
+        <Link to="/create">
+          <button className={`${styles.create}`}>Create Game</button>
+        </Link>
       </div>
       <div className={`${styles.container}`}>
         <VideogameList vids={vids} vars={vars} />
       </div>
       <div className={`${styles.btn_box}`}>
         <button className={`${styles.btn}`} onClick={prevPage}>
-          Prev
+          {`<`}
         </button>
         <button className={`${styles.btn}`} onClick={nextPage}>
-          Next
+          {`>`}
         </button>
       </div>
     </div>

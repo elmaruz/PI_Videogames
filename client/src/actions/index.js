@@ -75,9 +75,9 @@ export function createGame(obj) {
   };
 }
 
-export function selectDb(name, search) {
+export function selectDb(name, search, genre) {
   return {
     type: "SELECT_DB",
-    payload: { name, search },
+    payload: { name, search, genre },
   };
 }

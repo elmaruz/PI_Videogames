@@ -15,12 +15,14 @@ export default function Detail({ id }) {
     <div>
       <div className={`${styles.box}`}>
         <img className={`${styles.img}`} src={details.image} alt="Not Found" />
-        <div>{details.name}</div>
-        <div>{details.genres}</div>
-        <div>{details.rating}</div>
-        <div>{details.released}</div>
-        <div className={`${styles.desc}`}>{details.description}</div>
-        <div>{details.platforms}</div>
+        <div className={`${styles.container}`}>
+          <div className={`${styles.det}`}>{details.name}</div>
+          <div className={`${styles.det}`}>{details.genres}</div>
+          <div className={`${styles.det}`}>Rating: {details.rating}</div>
+          <div className={`${styles.det}`}>Released: {details.released}</div>
+          <div className={`${styles.desc}`}>{details.description}</div>
+          <div className={`${styles.det}`}>{details.platforms}</div>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,19 @@
+.btn {
+  background-color: grey;
+  padding: 10px;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.btn_active {
+  background-color: rgb(0, 200, 0);
+  padding: 11px;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+}
+
+/* .btn_active:focus {
+  background-color: green;
+} */

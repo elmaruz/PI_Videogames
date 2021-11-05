@@ -1,0 +1,21 @@
+.btn_rate {
+  background-color: grey;
+  padding: 10px;
+  border: none;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn_rate_active {
+  background-color: rgb(0, 200, 0);
+  padding: 11px;
+  border: none;
+  border-radius: 6px;
+  margin: 5px;
+  cursor: pointer;
+}
+/* 
+.btn_rate_active:focus {
+  background-color: green;
+} */

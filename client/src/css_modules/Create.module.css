@@ -1,3 +1,20 @@
+@font-face {
+  font-family: PressStart2P;
+  src: url(../fonts/PressStart2P-vaV7.ttf);
+  font-weight: normal;
+}
+
+.macro {
+  background-image: url("../img/pacman-wallpaper-8.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 1350px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -5,24 +22,111 @@
   align-items: center;
 }
 
-.platLabel {
-  font-weight: bold;
-}
-
-.genLabel {
-  font-weight: bold;
-}
-
 .error {
   border-style: solid;
-  border-width: 2px;
+  border-width: 3px;
   border-color: red;
+}
+
+.valid {
+  border-style: solid;
+  border-width: 3px;
+  border-color: rgb(0, 231, 0);
 }
 
 .errorMsg {
   color: red;
+  visibility: visible;
 }
 
 .errorMsgHide {
   visibility: hidden;
 }
+
+.label {
+  color: rgb(241, 237, 22);
+  margin: 5px;
+}
+
+.checksDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 250px;
+  width: 425px;
+  color: rgb(241, 237, 22);
+  border-style: solid;
+  border-color: rgb(241, 237, 22);
+  border-width: 3px;
+  border-radius: 6px;
+  background-color: rgba(75, 75, 75, 0.5);
+  margin: 20px;
+}
+
+.checksCont {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 47px;
+}
+
+.desc {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  width: 300px;
+  border-radius: 8px;
+}
+
+.name {
+  width: 225px;
+  border-radius: 8px;
+  height: 25px;
+}
+
+.date {
+  border-radius: 8px;
+  height: 25px;
+}
+
+.rate {
+  border-radius: 8px;
+  height: 25px;
+}
+
+.checks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 7px;
+}
+
+.box {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.plat {
+  position: relative;
+  left: 55px;
+}
+
+.btn {
+  font-family: PressStart2P;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: rgb(241, 237, 22);
+  margin-top: 18px;
+}
+
+/* .checks {
+  height: 100px;
+  width: 400px;
+} */

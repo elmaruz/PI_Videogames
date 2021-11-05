@@ -1,3 +1,9 @@
+@font-face {
+  font-family: PressStart2P;
+  src: url(../fonts/PressStart2P-vaV7.ttf);
+  font-weight: normal;
+}
+
 .macro {
   display: flex;
   flex-direction: column;
@@ -10,11 +16,8 @@
   justify-content: space-around;
   position: static;
   flex-wrap: wrap;
-  /* margin: 10px;
-  background-color: rgba(48, 0, 48, 0.5);
-  border-radius: 10px;
-  width: 95%;
-  height: 80%; */
+  background-color: rgba(0, 0, 0);
+  min-height: 720px;
 }
 
 .btn_box {
@@ -28,7 +31,12 @@
 }
 
 .error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: PressStart2P;
+  font-size: 40px;
   color: white;
-  font-weight: bold;
-  padding: 100px;
+  padding: 20px;
 }

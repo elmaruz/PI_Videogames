@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { createGame, getGenres } from "../actions/index.js";
+import { createGame, getGenres, getVids } from "../actions/index.js";
 import styles from "../css_modules/Create.module.css";
 
 export default function CreateGame() {
@@ -39,6 +39,7 @@ export default function CreateGame() {
 
   useEffect(() => {
     dispatch(getGenres());
+    dispatch(getVids());
   }, []);
 
   function validate(input) {
@@ -57,7 +58,7 @@ export default function CreateGame() {
     } else {
       errors.released = "Date required";
     }
-    if (input.rating) {
+    if (input.rating > 0) {
       errors.rating = "";
     } else {
       errors.rating = "Rating required";
@@ -122,7 +123,10 @@ export default function CreateGame() {
 
   function onSubmit(e) {
     e.preventDefault();
-    if (!Object.values(error).includes("")) {
+    let checkObj = Object.values(error);
+    let checkArr = checkObj.filter((elem) => elem !== "");
+    console.log(checkArr);
+    if (checkArr.length > 0) {
       alert("Please fill in the required fields");
     } else {
       let newGame = {
@@ -130,7 +134,7 @@ export default function CreateGame() {
         description: input.description,
         released: input.released,
         image:
-          "https://icons.iconarchive.com/icons/iconsmind/outline/512/Gamepad-icon.png",
+          "https://thumbs.dreamstime.com/b/video-game-controller-doodle-hand-drawn-vector-illustration-63395075.jpg",
         rating: input.rating,
         platforms: input.platforms,
         genres: input.genres,
@@ -140,52 +144,76 @@ export default function CreateGame() {
     }
   }
   return (
-    <div>
+    <div className={`${styles.macro}`}>
       <form className={`${styles.container}`} onSubmit={onSubmit}>
-        <div>
-          Name
-          <input
-            type="text"
-            name="name"
-            value={input.name}
-            onChange={handleInput}
-            className={`${error.name ? styles.error : ""}`}
-          />
+        <div className={`${styles.box}`}>
+          <label className={`${styles.label}`}>Name</label>
+          <div>
+            <input
+              type="text"
+              name="name"
+              value={input.name}
+              onChange={handleInput}
+              className={`${error.name ? styles.error : styles.valid} ${
+                styles.name
+              }`}
+            />
+          </div>
+          <label className={`${styles.label}`}>Description</label>
+          <div>
+            <textarea
+              name="description"
+              value={input.description}
+              onChange={handleInput}
+              className={`${error.description ? styles.error : styles.valid} ${
+                styles.desc
+              }`}
+            />
+          </div>
+          <label className={`${styles.label}`}>Released</label>
+          <div>
+            <input
+              type="date"
+              name="released"
+              value={input.released}
+              onChange={handleInput}
+              className={`${error.released ? styles.error : styles.valid} ${
+                styles.date
+              }`}
+            />
+          </div>
+          <label className={`${styles.label}`}>Rating</label>
+          <div>
+            <input
+              type="number"
+              name="rating"
+              value={input.rating}
+              onChange={handleInput}
+              min="0"
+              max="5"
+              className={`${error.rating ? styles.error : styles.valid} ${
+                styles.rate
+              }`}
+            />
+          </div>
         </div>
-        <div>
-          Description
-          <input
-            type="text"
-            name="description"
-            value={input.description}
-            onChange={handleInput}
-            className={`${error.description ? styles.error : ""}`}
-          />
-        </div>
-        <div>
-          Released
-          <input
-            type="date"
-            name="released"
-            value={input.released}
-            onChange={handleInput}
-            className={`${error.released ? styles.error : ""}`}
-          />
-        </div>
-        <div>
-          Rating
-          <input
-            type="number"
-            name="rating"
-            value={input.rating}
-            onChange={handleInput}
-            min="0"
-            max="5"
-            className={`${error.rating ? styles.error : ""}`}
-          />
-        </div>
-        <div className={`${styles.genDiv}`}>
-          Genres
+        <label className={`${styles.label}`}>Genre</label>
+        <div className={`${styles.checksCont}`}>
+          <div className={`${styles.checksDiv}`}>
+            {genres.map((elem, index) => (
+              <div key={elem + index} className={`${styles.checks}`}>
+                {elem.name}
+                <input
+                  className={`${styles.checkbox}`}
+                  type="checkbox"
+                  name={elem.name}
+                  value={elem.name}
+                  onChange={() => handleGenre(index)}
+                  checked={checkState.genres[index]}
+                />
+              </div>
+            ))}
+          </div>
           <label
             className={`${
               error.genres ? styles.errorMsg : styles.errorMsgHide
@@ -193,21 +221,24 @@ export default function CreateGame() {
           >
             Genre required
           </label>
-          {genres.map((elem, index) => (
-            <div>
-              {elem.name}
-              <input
-                type="checkbox"
-                name={elem.name}
-                value={elem.name}
-                onChange={() => handleGenre(index)}
-                checked={checkState.genres[index]}
-              />
-            </div>
-          ))}
         </div>
-        <div className={`${styles.platDiv}`}>
-          Platforms
+        <label className={`${styles.label}`}>Platforms</label>
+        <div className={`${styles.checksCont} ${styles.plat}`}>
+          <div className={`${styles.checksDiv}`}>
+            {platforms.map((elem, index) => (
+              <div key={elem + index} className={`${styles.checks}`}>
+                {elem}
+                <input
+                  className={`${styles.checkbox}`}
+                  type="checkbox"
+                  name={elem}
+                  value={elem}
+                  onChange={() => handlePlatform(index)}
+                  checked={checkState.platforms[index]}
+                />
+              </div>
+            ))}
+          </div>
           <label
             className={`${
               error.platforms ? styles.errorMsg : styles.errorMsgHide
@@ -215,20 +246,10 @@ export default function CreateGame() {
           >
             Platform required
           </label>
-          {platforms.map((elem, index) => (
-            <div>
-              {elem}
-              <input
-                type="checkbox"
-                name={elem}
-                value={elem}
-                onChange={() => handlePlatform(index)}
-                checked={checkState.platforms[index]}
-              />
-            </div>
-          ))}
         </div>
-        <button type="submit">Create</button>
+        <button type="submit" className={`${styles.btn}`}>
+          Enter
+        </button>
       </form>
     </div>
   );

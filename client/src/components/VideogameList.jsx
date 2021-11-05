@@ -20,7 +20,10 @@ export default function VideogameList({ vids, vars }) {
             );
           } else {
             return (
-              <label className={`${styles.error}`}>Videogame not found</label>
+              <div>
+                <h1 className={`${styles.error}`}>GAME OVER</h1>
+                <h3 className={`${styles.error}`}>videogame not found</h3>
+              </div>
             );
           }
         })}

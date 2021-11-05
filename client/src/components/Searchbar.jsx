@@ -21,16 +21,14 @@ export default function Searchbar({ onSearch, onSort }) {
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
+      <form className={`${styles.form}`} onSubmit={submitHandler}>
         <input
           className={`${styles.searchbar}`}
           type="text"
           value={input}
           onChange={changeHandler}
         />
-        <button className={`${styles.search_btn}`} type="submit">
-          Search
-        </button>
+        <button className={`${styles.search_btn}`} type="submit"></button>
       </form>
     </div>
   );
