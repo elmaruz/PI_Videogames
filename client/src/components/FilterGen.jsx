@@ -12,16 +12,8 @@ export default function FilterGen({ onFilterGen }) {
   }
 
   return (
-    // <select name="select" onChange={onChangeHandler}>
-    //   <option value="">---Select Genre---</option>
-    // {genres.map((elem, index) => (
-    //   <option key={elem + index} value={elem.name}>
-    //     {elem.name}{" "}
-    //   </option>
-    // ))}
-    // </select>
     <div className={`${styles.drop}`}>
-      <button className={`${styles.menu}`} onClick={""}>
+      <button className={`${value ? styles.menu_active : styles.menu}`}>
         {value ? value : "Select Genre"}
       </button>
       <div className={`${styles.select}`}>

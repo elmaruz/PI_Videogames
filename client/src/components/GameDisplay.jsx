@@ -17,9 +17,8 @@ import FilterDb from "./FilterDb.jsx";
 import { Link } from "react-router-dom";
 import styles from "../css_modules/GameDisplay.module.css";
 
-export default function GameDisplay({ def }) {
+export default function GameDisplay() {
   let vids = useSelector((state) => state.vidsList);
-  const api = useSelector((state) => state.apiList);
   let genres = useSelector((state) => state.genres);
   const dispatch = useDispatch();
   let [page, setPage] = useState(0);
@@ -91,7 +90,7 @@ export default function GameDisplay({ def }) {
     if (db) {
       dispatch(selectDb(db, search, genre));
     }
-  }, [search, genre, db, sort, ratings]);
+  }, [search, genre, db, sort, ratings, dispatch]);
 
   function nextPage() {
     let maxPages = Math.floor(vids.length / 15);
@@ -121,10 +120,11 @@ export default function GameDisplay({ def }) {
 
   function onSort(value) {
     setSort(value);
-    console.log(sort);
   }
 
   function onFilterGen(value) {
+    setPage(0);
+    setVars([0, 15]);
     setGenre(value);
   }
 

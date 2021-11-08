@@ -1,3 +1,9 @@
+@font-face {
+  font-family: PressStart2P;
+  src: url(../fonts/PressStart2P-vaV7.ttf);
+  font-weight: normal;
+}
+
 .form {
   display: flex;
   align-items: center;
@@ -5,10 +11,11 @@
 
 .searchbar {
   background-color: white;
-  height: 25px;
+  height: 30px;
   width: 200px;
   margin-right: 10px;
-  border-radius: 6px;
+  font-size: 16px;
+  border: none;
 }
 
 .search_btn {
@@ -20,8 +27,24 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  padding: 14px;
-  border-radius: 8px;
+  padding: 16px;
+  margin-right: 10px;
   cursor: pointer;
   align-self: center;
+  border: none;
+}
+
+.del_btn {
+  /* font-family: PressStart2P; */
+  cursor: pointer;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  background-color: rgb(199, 2, 2);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
 }

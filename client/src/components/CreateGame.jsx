@@ -40,7 +40,7 @@ export default function CreateGame() {
   useEffect(() => {
     dispatch(getGenres());
     dispatch(getVids());
-  }, []);
+  }, [dispatch]);
 
   function validate(input) {
     if (input.name) {
@@ -80,9 +80,8 @@ export default function CreateGame() {
     let genCheckState = checkState.genres.map((elem, index) => {
       if (index === pos) {
         return !elem;
-      } else {
-        return elem;
       }
+      return elem;
     });
     setCheckState({ ...checkState, genres: genCheckState });
     var genArr = genCheckState
@@ -90,6 +89,7 @@ export default function CreateGame() {
         if (elem === true) {
           return genres[index].name;
         }
+        return 0;
       })
       .filter((elem) => typeof elem === "string");
     setInput({ ...input, genres: genArr });
@@ -100,9 +100,8 @@ export default function CreateGame() {
     let platCheckState = checkState.platforms.map((elem, index) => {
       if (index === pos) {
         return !elem;
-      } else {
-        return elem;
       }
+      return elem;
     });
     setCheckState({ ...checkState, platforms: platCheckState });
     var platArr = platCheckState
@@ -110,6 +109,7 @@ export default function CreateGame() {
         if (elem === true) {
           return platforms[index];
         }
+        return 0;
       })
       .filter((elem) => typeof elem === "string");
     setInput({ ...input, platforms: platArr });

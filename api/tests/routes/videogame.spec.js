@@ -21,5 +21,13 @@ describe("Videogame routes", () => {
   );
   describe("GET /videogames", () => {
     it("should get 200", () => agent.get("/videogames").expect(200));
+    it("should return an array with 101 games", () =>
+      agent.get("/videogames").then((res) => {
+        expect(res.body.length).to.equal(101);
+      }));
+    it("should return 4 games if we look up the word grand", () =>
+      agent.get(`/videogames?name=${"grand"}`).then((res) => {
+        expect(res.body.length).to.equal(4);
+      }));
   });
 });

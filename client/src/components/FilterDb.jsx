@@ -9,23 +9,11 @@ export default function FilterDb({ onDb }) {
   }
 
   return (
-    // <select
-    //   name="select"
-    //   onChange={onChangeHandler}
-    //   className={`${styles.select}`}
-    // >
-    //   <option value="" className={`${styles.item}`}>
-    //     All
-    //   </option>
-    //   <option value="db" className={`${styles.item}`}>
-    //     My DB
-    //   </option>
-    //   <option value="rawg" className={`${styles.item}`}>
-    //     rawg API
-    //   </option>
-    // </select>
     <div className={`${styles.drop}`}>
-      <button value="db" className={`${styles.menu}`}>
+      <button
+        value="db"
+        className={`${value ? styles.menu_active : styles.menu}`}
+      >
         {value ? value : "Select DB"}
       </button>
       <div className={`${styles.select}`}>

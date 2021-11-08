@@ -14,6 +14,12 @@ export default function Searchbar({ onSearch, onSort }) {
     }
   }
 
+  function reset(e) {
+    setInput(e.target.value);
+    onSearch(e.target.value);
+    onSort(e.target.value);
+  }
+
   function submitHandler(e) {
     e.preventDefault();
     onSearch(input);
@@ -29,6 +35,9 @@ export default function Searchbar({ onSearch, onSort }) {
           onChange={changeHandler}
         />
         <button className={`${styles.search_btn}`} type="submit"></button>
+        <button value="" className={`${styles.del_btn}`} onClick={reset}>
+          X
+        </button>
       </form>
     </div>
   );

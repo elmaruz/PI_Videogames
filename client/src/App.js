@@ -3,7 +3,6 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Landing from "./components/Landing.jsx";
 import GameDisplay from "./components/GameDisplay.jsx";
-import Nav from "./components/Nav.jsx";
 import Detail from "./components/Detail.jsx";
 import CreateGame from "./components/CreateGame.jsx";
 
@@ -11,7 +10,7 @@ function App() {
   return (
     <Router>
       <Route exact path="/" component={Landing} />
-      <Route exact path="/videogames" component={GameDisplay} def={""} />
+      <Route exact path="/videogames" component={GameDisplay} />
       <Route
         exact
         path="/videogames/:id"

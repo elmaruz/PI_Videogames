@@ -24,13 +24,6 @@ export function searchVids(id) {
   };
 }
 
-// export function sortVids(order) {
-//   return {
-//     type: "SORT_VIDS",
-//     payload: order,
-//   };
-// }
-
 export function getGenres() {
   return function (dispatch) {
     axios.get(`http://localhost:3001/genres`).then((genres) => {
@@ -45,27 +38,12 @@ export function filterGenres(genre) {
     payload: genre,
   };
 }
-
-// export function sortFilter(sort, genre) {
-//   return {
-//     type: "SORTFILTER",
-//     payload: { sort, genre },
-//   };
-// }
-
 export function searchFilter(search, genre) {
   return {
     type: "SEARCHFILTER",
     payload: { search, genre },
   };
 }
-
-// export function sortFilterSearch(sort, genre, search) {
-//   return {
-//     type: "SFS",
-//     payload: { sort, genre, search },
-//   };
-// }
 
 export function createGame(obj) {
   return function (dispatch) {

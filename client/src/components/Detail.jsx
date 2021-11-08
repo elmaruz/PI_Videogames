@@ -9,7 +9,7 @@ export default function Detail({ id }) {
 
   useEffect(() => {
     dispatch(getDetails(id));
-  }, []);
+  }, [dispatch, id]);
 
   return (
     <div>

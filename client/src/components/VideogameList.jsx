@@ -1,6 +1,5 @@
 import Videogame from "./Videogame.jsx";
 import styles from "../css_modules/VideogameList.module.css";
-import { useSelector } from "react-redux";
 
 export default function VideogameList({ vids, vars }) {
   return (

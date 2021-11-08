@@ -27,17 +27,27 @@
   border-style: solid;
   border-color: white;
   border-width: 3px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   height: 75px;
   width: 200px;
   justify-content: center;
   align-items: center;
   background-color: rgb(241, 237, 22);
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.linkbox:hover {
+  background-color: rgb(241, 55, 22);
+  color: white;
+  border-color: white;
+  transition: background-color border-color color 0.3s;
 }
 
 .linkbox:active {
-  background-color: rgb(241, 237, 22);
+  background-color: rgb(241, 55, 22);
+  color: white;
+  border-color: white;
   box-shadow: 0 5px #666;
   transform: translateY(2px);
 }

@@ -8,15 +8,22 @@ describe("Videogame model", () => {
     })
   );
   describe("Validators", () => {
-    beforeEach(() => Videogame.sync({ force: true }));
+    beforeEach(async () => await Videogame.sync({ force: true }));
     describe("name", () => {
-      it("should throw an error if name is null", (done) => {
+      it("should throw an error if object is empty", (done) => {
         Videogame.create({})
-          .then(() => done(new Error("It requires a valid name")))
+          .then(() => done(new Error("Object is empty")))
           .catch(() => done());
       });
-      it("should work when its a valid name", () => {
-        Videogame.create({ name: "Super Mario Bros" });
+      it("should at least have a name", (done) => {
+        Videogame.create({ description: "mate" })
+          .then(() => done("Name required"))
+          .catch(() => done());
+      });
+      it("should at least have a description", (done) => {
+        Videogame.create({ name: "hello" })
+          .then(() => done("Description required"))
+          .catch(() => done());
       });
     });
   });
