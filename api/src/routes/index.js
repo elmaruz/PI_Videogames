@@ -76,46 +76,46 @@ router.get("/videogames", async (req, res) => {
   }
   let flatarr = arr1.flat(); // flatten the array to get rid of nested arrays
   if (flatarr.length > 0) {
-    res.status(200).send(flatarr);
+    res.send(flatarr);
   } else {
     res.send([{ name: "Videogame not found", image: "x", genres: [""] }]); // send this message out if game not found
   }
 });
 
-router.get("/videogame/:id", async (req, res) => {
+router.get("/videogame/:id", (req, res) => {
   let id = req.params.id;
   if (id && id.length < 9) {
-    // db ids contain > 9 chars. if id < 9 chars long, gotta be api
-    let request = await axios.get(
-      `https://rawg.io/api/games/${id}?key=${APIKEY}` // requesting videogame with given id
-    );
-    let info = {
-      // creating new obj with response values
-      name: request.data.name,
-      genres: request.data.genres.map((elem) => elem.name).join(" / "),
-      image: request.data.background_image,
-      description: request.data.description.replace(/(<([^>]+)>)/gi, ""),
-      released: request.data.released,
-      rating: request.data.rating,
-      platforms: request.data.platforms
-        .map((elem) => elem.platform.name)
-        .join(" - "),
-    };
-    res.send(info); // send this object
+    axios
+      .get(`https://rawg.io/api/games/${id}?key=${APIKEY}`)
+      .then((r) => r.data)
+      .then((data) => {
+        let info = {
+          name: data.name,
+          genres: data.genres.map((elem) => elem.name).join(" / "),
+          image: data.background_image,
+          description: data.description.replace(/(<([^>]+)>)/gi, ""),
+          released: data.released,
+          rating: data.rating,
+          platforms: data.platforms
+            .map((elem) => elem.platform.name)
+            .join(" - "),
+        };
+        res.send(info);
+      });
   } else if (id && id.length > 9) {
-    // if id is > 9 chars long, gotta be from db
-    let dbSearch = await Videogame.findByPk(id, { include: Genre }); // query to db to find by id (primary key)
-    let infoDb = {
-      // creating new obj with response values
-      name: dbSearch.name,
-      genres: dbSearch.genres.map((elem) => elem.name).join(" / "),
-      image: dbSearch.image,
-      description: dbSearch.description,
-      released: dbSearch.released,
-      rating: dbSearch.rating,
-      platforms: dbSearch.platforms.map((elem) => elem).join(" - "),
-    };
-    res.send(infoDb); // send that object
+    Videogame.findByPk(id, { include: Genre }).then((r) => {
+      let infoDb = {
+        // creating new obj with response values
+        name: r.name,
+        genres: r.genres.map((elem) => elem.name).join(" / "),
+        image: r.image,
+        description: r.description,
+        released: r.released,
+        rating: r.rating,
+        platforms: r.platforms.map((elem) => elem).join(" - "),
+      };
+      res.send(infoDb);
+    });
   }
 });
 
@@ -159,3 +159,38 @@ router.post("/videogame", async (req, res) => {
 });
 
 module.exports = router;
+
+// let id = req.params.id;
+// if (id && id.length < 9) {
+//   // db ids contain > 9 chars. if id < 9 chars long, gotta be api
+//   let request = await axios.get(
+//     `https://rawg.io/api/games/${id}?key=${APIKEY}` // requesting videogame with given id
+//   );
+//   let info = {
+//     // creating new obj with response values
+//     name: request.data.name,
+//     genres: request.data.genres.map((elem) => elem.name).join(" / "),
+//     image: request.data.background_image,
+//     description: request.data.description.replace(/(<([^>]+)>)/gi, ""),
+//     released: request.data.released,
+//     rating: request.data.rating,
+//     platforms: request.data.platforms
+//       .map((elem) => elem.platform.name)
+//       .join(" - "),
+//   };
+//   res.send(info); // send this object
+// } else if (id && id.length > 9) {
+//   // if id is > 9 chars long, gotta be from db
+//   let dbSearch = await Videogame.findByPk(id, { include: Genre }); // query to db to find by id (primary key)
+//   let infoDb = {
+//     // creating new obj with response values
+//     name: dbSearch.name,
+//     genres: dbSearch.genres.map((elem) => elem.name).join(" / "),
+//     image: dbSearch.image,
+//     description: dbSearch.description,
+//     released: dbSearch.released,
+//     rating: dbSearch.rating,
+//     platforms: dbSearch.platforms.map((elem) => elem).join(" - "),
+//   };
+//   res.send(infoDb); // send that object
+// }
