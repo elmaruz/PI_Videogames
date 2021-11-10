@@ -14,17 +14,17 @@ const router = Router();
 router.get("/videogames", async (req, res) => {
   let count = 0; // variable to keep api page count
   let pages = []; // array to save api pages
-  let head = await axios.get(`https://rawg.io/api/games?key=${APIKEY}`);
-  let current = head.data; // api data structured as a linked list - assigning head to varible current
-  pages.push(current); // pushing head's content (full page) to pages array - each page contains 20 games
-  while (count < 4) {
-    let getNext = await axios.get(current.next); // grab four more pages going through this linked list
-    pages.push(getNext.data);
-    current = getNext.data;
-    count++;
-  }
   let arr1 = []; // arr1 used to store games
   if (!req.query.name) {
+    let head = await axios.get(`https://rawg.io/api/games?key=${APIKEY}`);
+    let current = head.data; // api data structured as a linked list - assigning head to varible current
+    pages.push(current); // pushing head's content (full page) to pages array - each page contains 20 games
+    while (count < 4) {
+      let getNext = await axios.get(current.next); // grab four more pages going through this linked list
+      pages.push(getNext.data);
+      current = getNext.data;
+      count++;
+    }
     arr1 = []; // clearing arr1 before each request
     let myDb = await Videogame.findAll({
       include: Genre,
@@ -46,40 +46,51 @@ router.get("/videogames", async (req, res) => {
       arr1.push(x); // push every obj
     }
   } else if (req.query.name) {
-    arr1 = [];
-    let findDb = await Videogame.findAll({
-      // if req query, find all games in db which contain req.query in name
-      include: Genre,
-      where: {
-        name: { [Op.like]: `%${req.query.name}%` },
-      },
-    });
-    arr1.push(findDb);
-    for (var i = 0; i < pages.length; i++) {
-      // filter out games in api pages which contain req query name
-      var y = pages[i].results
-        .filter((elem) =>
-          elem.name.toLowerCase().includes(req.query.name.toLowerCase())
-        )
-        .map((elem) => {
-          return {
-            id: elem.id,
-            name: elem.name,
-            genres: elem.genres,
-            image: elem.background_image,
-            rating: elem.rating,
-            platforms: elem.platforms.map((elem) => elem.platform.name),
-          };
-        });
-      arr1.push(y); // push every obj which contains req.query in its name prop
+    try {
+      let search = await axios.get(
+        `https://rawg.io/api/games?key=${APIKEY}&search=${req.query.name}`
+      );
+      let curr = search.data; // api data structured as a linked list - assigning head to varible current
+      pages.push(curr); // pushing head's content (full page) to pages array - each page contains 20 games
+      while (count < 4) {
+        let findNext = await axios.get(curr.next); // grab four more pages going through this linked list
+        pages.push(findNext.data);
+        curr = findNext.data;
+        count++;
+      }
+      arr1 = [];
+      let findDb = await Videogame.findAll({
+        // if req query, find all games in db which contain req.query in name
+        include: Genre,
+        where: {
+          name: { [Op.like]: `%${req.query.name}%` },
+        },
+      });
+      arr1.push(findDb);
+      for (var i = 0; i < pages.length; i++) {
+        // filter out games in api pages which contain req query name
+        var y = pages[i].results
+          .filter((elem) =>
+            elem.name.toLowerCase().includes(req.query.name.toLowerCase())
+          )
+          .map((elem) => {
+            return {
+              id: elem.id,
+              name: elem.name,
+              genres: elem.genres,
+              image: elem.background_image,
+              rating: elem.rating,
+              platforms: elem.platforms.map((elem) => elem.platform.name),
+            };
+          });
+        arr1.push(y); // push every obj which contains req.query in its name prop
+      }
+    } catch (error) {
+      arr1.push([{ name: "Videogame not found", image: "x", genres: [""] }]);
     }
   }
   let flatarr = arr1.flat(); // flatten the array to get rid of nested arrays
-  if (flatarr.length > 0) {
-    res.send(flatarr);
-  } else {
-    res.send([{ name: "Videogame not found", image: "x", genres: [""] }]); // send this message out if game not found
-  }
+  res.send(flatarr);
 });
 
 router.get("/videogame/:id", (req, res) => {

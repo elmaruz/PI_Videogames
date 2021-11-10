@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import styles from "../css_modules/GenDropdown.module.css";
 
-export default function FilterGen({ onFilterGen }) {
+export default function FilterGen({ onFilterGen, genre }) {
   let [value, setValue] = useState("");
   let genres = useSelector((state) => state.genres);
 
@@ -13,8 +13,10 @@ export default function FilterGen({ onFilterGen }) {
 
   return (
     <div className={`${styles.drop}`}>
-      <button className={`${value ? styles.menu_active : styles.menu}`}>
-        {value ? value : "Select Genre"}
+      <button
+        className={`${value && genre ? styles.menu_active : styles.menu}`}
+      >
+        {value && genre ? value : "Select Genre"}
       </button>
       <div className={`${styles.select}`}>
         <button className={`${styles.btn}`} value="" onClick={onChangeHandler}>

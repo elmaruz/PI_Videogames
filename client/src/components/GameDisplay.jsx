@@ -5,7 +5,6 @@ import {
   searchVids,
   getGenres,
   filterGenres,
-  searchFilter,
   selectDb,
 } from "../actions/index.js";
 import VideogameList from "./VideogameList";
@@ -81,10 +80,7 @@ export default function GameDisplay() {
     if (search && !genre && !db) {
       dispatch(searchVids(search));
     }
-    if (search && genre && !db) {
-      dispatch(searchFilter(search, genre));
-    }
-    if (!search && genre && !db) {
+    if (genre) {
       dispatch(filterGenres(genre));
     }
     if (db) {
@@ -97,7 +93,6 @@ export default function GameDisplay() {
     setPage(page + 1);
     if (page < maxPages) {
       setVars([vars[0] + 15, vars[1] + 15]);
-      console.log(vars);
     } else {
       setPage(maxPages);
     }
@@ -139,11 +134,17 @@ export default function GameDisplay() {
   return (
     <div className={`${styles.master}`}>
       <div className={`${styles.macro}`}>
-        <FilterDb onDb={onDb} />
-        <SortAZ onSort={onSort} />
-        <SortRating onRating={onRating} />
-        <Searchbar onSearch={onSearch} onSort={onSort} />
-        <FilterGen genres={genres} onFilterGen={onFilterGen} />
+        <FilterDb db={db} onDb={onDb} />
+        <SortAZ sort={sort} onSort={onSort} />
+        <SortRating ratings={ratings} onRating={onRating} />
+        <Searchbar
+          onSearch={onSearch}
+          onSort={onSort}
+          onFilterGen={onFilterGen}
+          onRating={onRating}
+          onDb={onDb}
+        />
+        <FilterGen genre={genre} onFilterGen={onFilterGen} />
         <Link to="/create">
           <button className={`${styles.create}`}>Create Game</button>
         </Link>

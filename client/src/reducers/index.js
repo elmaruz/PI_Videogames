@@ -23,6 +23,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         vidsList: action.payload,
+        apiList: action.payload,
       };
     case "GET_GENRES":
       return {
@@ -40,28 +41,33 @@ export default function rootReducer(state = initialState, action) {
         };
       }
       break;
-    case "SEARCHFILTER":
-      let auxApi = state.apiList;
-      let aux = auxApi.filter(
-        (elem) =>
-          elem.genres.map((elem) => elem.name).includes(action.payload.genre) &&
-          elem.name.toLowerCase().includes(action.payload.search.toLowerCase())
-      );
-      if (aux) {
-        return {
-          ...state,
-          vidsList: aux,
-        };
-      } else {
-        return {
-          ...state,
-          vidsList: auxApi.filter((elem) =>
-            elem.name
-              .toLowerCase()
-              .includes(action.payload.search.toLowerCase())
-          ),
-        };
-      }
+    // case "SEARCHFILTER":
+    //   let auxApi = state.apiList;
+    //   // let aux = auxApi.filter(
+    //   //   (elem) =>
+    //   //     elem.genres.map((elem) => elem.name).includes(action.payload.genre) &&
+    //   //     elem.name.toLowerCase().includes(action.payload.search.toLowerCase())
+    //   // );
+    //   let aux = auxApi.filter(
+    //     (elem) =>
+    //       elem.genres.map((elem) => elem.name.includes(action.payload.genre)) &&
+    //       elem.name.toLowerCase().includes(action.payload.search)
+    //   );
+    //   if (aux) {
+    //     return {
+    //       ...state,
+    //       vidsList: aux,
+    //     };
+    //   } else {
+    //     return {
+    //       ...state,
+    //       vidsList: auxApi.filter((elem) =>
+    //         elem.name
+    //           .toLowerCase()
+    //           .includes(action.payload.search.toLowerCase())
+    //       ),
+    //     };
+    //   }
     case "CREATE_GAME":
       return {
         ...state,

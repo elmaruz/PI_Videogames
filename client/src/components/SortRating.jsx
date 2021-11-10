@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "../css_modules/SortRating.module.css";
 
-export default function SortRating({ onRating }) {
+export default function SortRating({ onRating, ratings }) {
   let [btnAZ, setBtnAZ] = useState(0);
   let [btnZA, setBtnZA] = useState(0);
 
@@ -37,14 +37,18 @@ export default function SortRating({ onRating }) {
       <button
         value="ASC"
         onClick={onChangeHandler}
-        className={`${btnAZ ? styles.btn_rate_active : styles.btn_rate}`}
+        className={`${
+          btnAZ && ratings ? styles.btn_rate_active : styles.btn_rate
+        }`}
       >
         Rating ▲
       </button>
       <button
         value="DESC"
         onClick={onChangeHandler}
-        className={`${btnZA ? styles.btn_rate_active : styles.btn_rate}`}
+        className={`${
+          btnZA && ratings ? styles.btn_rate_active : styles.btn_rate
+        }`}
       >
         Rating ▼
       </button>

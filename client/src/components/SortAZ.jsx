@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "../css_modules/SortAZ.module.css";
 
-export default function SortAZ({ onSort }) {
+export default function SortAZ({ onSort, sort }) {
   let [btnAZ, setBtnAZ] = useState(0);
   let [btnZA, setBtnZA] = useState(0);
 
@@ -39,14 +39,14 @@ export default function SortAZ({ onSort }) {
       <button
         value="ASC"
         onClick={onChangeHandler}
-        className={`${btnAZ ? styles.btn_active : styles.btn}`}
+        className={`${btnAZ && sort ? styles.btn_active : styles.btn}`}
       >
         A-Z
       </button>
       <button
         value="DESC"
         onClick={onChangeHandler}
-        className={`${btnZA ? styles.btn_active : styles.btn}`}
+        className={`${btnZA && sort ? styles.btn_active : styles.btn}`}
       >
         Z-A
       </button>

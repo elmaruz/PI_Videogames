@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import styles from "../css_modules/Searchbar.module.css";
 
-export default function Searchbar({ onSearch, onSort }) {
+export default function Searchbar({
+  onSearch,
+  onSort,
+  onFilterGen,
+  onRating,
+  onDb,
+}) {
   let [input, setInput] = useState("");
 
   function changeHandler(e) {
@@ -11,6 +17,9 @@ export default function Searchbar({ onSearch, onSort }) {
       setInput("");
       onSearch("");
       onSort("");
+      onFilterGen("");
+      onRating("");
+      onDb("");
     }
   }
 
@@ -18,10 +27,17 @@ export default function Searchbar({ onSearch, onSort }) {
     setInput(e.target.value);
     onSearch(e.target.value);
     onSort(e.target.value);
+    onFilterGen(e.target.value);
+    onRating(e.target.value);
+    onDb(e.target.value);
   }
 
   function submitHandler(e) {
     e.preventDefault();
+    onSort("");
+    onFilterGen("");
+    onRating("");
+    onDb("");
     onSearch(input);
   }
 
