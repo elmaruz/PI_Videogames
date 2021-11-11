@@ -60,7 +60,6 @@
   border-style: solid;
   border-color: rgb(241, 237, 22);
   border-width: 3px;
-  /* border-radius: 6px; */
   background-color: rgba(75, 75, 75, 0.5);
   margin: 20px;
 }
@@ -78,22 +77,19 @@
   flex-direction: column;
   height: 100px;
   width: 300px;
-  /* border-radius: 8px; */
 }
 
 .name {
   width: 225px;
-  /* border-radius: 8px; */
+
   height: 25px;
 }
 
 .date {
-  /* border-radius: 8px; */
   height: 25px;
 }
 
 .rate {
-  /* border-radius: 8px; */
   height: 25px;
 }
 
@@ -121,7 +117,6 @@
   font-family: PressStart2P;
   cursor: pointer;
   padding: 15px;
-  /* border-radius: 15px; */
   background-color: rgb(241, 237, 22);
   border-style: solid;
   border-color: white;
@@ -132,8 +127,3 @@
 .btn:active {
   transform: translateY(2px);
 }
-
-/* .checks {
-  height: 100px;
-  width: 400px;
-} */

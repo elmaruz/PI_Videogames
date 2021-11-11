@@ -27,6 +27,7 @@ export default function CreateGame() {
     genres: [],
     rating: 0,
     platforms: [],
+    price: "",
   });
   let [error, setError] = useState({
     name: "Name required",

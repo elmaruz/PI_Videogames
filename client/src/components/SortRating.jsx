@@ -28,11 +28,6 @@ export default function SortRating({ onRating, ratings }) {
   }
 
   return (
-    // <select name="select" onChange={onChangeHandler}>
-    //   <option value="">---Sort By Rating---</option>
-    //   <option value="ASC">Lo ti Hi</option>
-    //   <option value="DESC">Hi to Lo</option>
-    // </select>
     <div className={`${styles.container}`}>
       <button
         value="ASC"

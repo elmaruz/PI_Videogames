@@ -4,16 +4,13 @@ import styles from "../css_modules/DbDropdown.module.css";
 export default function FilterDb({ onDb, db }) {
   let [value, setValue] = useState("");
   function onChangeHandler(e) {
-    onDb(e.target.value);
     setValue(e.target.value);
+    onDb(e.target.value);
   }
 
   return (
     <div className={`${styles.drop}`}>
-      <button
-        value="db"
-        className={`${value && db ? styles.menu_active : styles.menu}`}
-      >
+      <button className={`${value && db ? styles.menu_active : styles.menu}`}>
         {value && db ? value : "Select DB"}
       </button>
       <div className={`${styles.select}`}>

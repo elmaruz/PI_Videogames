@@ -18,7 +18,6 @@ import styles from "../css_modules/GameDisplay.module.css";
 
 export default function GameDisplay() {
   let vids = useSelector((state) => state.vidsList);
-  let genres = useSelector((state) => state.genres);
   const dispatch = useDispatch();
   let [page, setPage] = useState(0);
   let [vars, setVars] = useState([0, 15]);
@@ -83,7 +82,7 @@ export default function GameDisplay() {
     if (genre) {
       dispatch(filterGenres(genre));
     }
-    if (db) {
+    if (db === "DB" || db === "Rawg") {
       dispatch(selectDb(db, search, genre));
     }
   }, [search, genre, db, sort, ratings, dispatch]);
@@ -115,16 +114,18 @@ export default function GameDisplay() {
 
   function onSort(value) {
     setSort(value);
+    setDb(value);
   }
 
   function onFilterGen(value) {
+    setGenre(value);
     setPage(0);
     setVars([0, 15]);
-    setGenre(value);
   }
 
   function onRating(value) {
     setRatings(value);
+    setDb(value);
   }
 
   function onDb(value) {

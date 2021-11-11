@@ -6,7 +6,6 @@ export default function SortAZ({ onSort, sort }) {
   let [btnZA, setBtnZA] = useState(0);
 
   function onChangeHandler(e) {
-    // onSort(e.target.value);
     if (e.target.value === "ASC") {
       if (!btnAZ) {
         onSort(e.target.value);
@@ -29,12 +28,6 @@ export default function SortAZ({ onSort, sort }) {
   }
 
   return (
-    //   <select name="select" onChange={onChangeHandler}>
-    //     <option value="">---Sort By Name---</option>
-    //     <option value="ASC">A-Z</option>
-    //     <option value="DESC">Z-A</option>
-    //   </select>
-    // );
     <div className={`${styles.container}`}>
       <button
         value="ASC"

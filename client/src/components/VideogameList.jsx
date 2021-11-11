@@ -30,15 +30,3 @@ export default function VideogameList({ vids, vars }) {
     </div>
   );
 }
-
-// {vids.slice(vars[0], vars[1]).map((elem, index) => {
-//   return (
-//     <Videogame
-//       key={index}
-//       id={elem.id}
-//       name={elem.name}
-//       image={elem.image}
-//       genres={elem.genre}
-//     />
-//   );
-// })}

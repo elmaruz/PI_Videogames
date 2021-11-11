@@ -41,33 +41,6 @@ export default function rootReducer(state = initialState, action) {
         };
       }
       break;
-    // case "SEARCHFILTER":
-    //   let auxApi = state.apiList;
-    //   // let aux = auxApi.filter(
-    //   //   (elem) =>
-    //   //     elem.genres.map((elem) => elem.name).includes(action.payload.genre) &&
-    //   //     elem.name.toLowerCase().includes(action.payload.search.toLowerCase())
-    //   // );
-    //   let aux = auxApi.filter(
-    //     (elem) =>
-    //       elem.genres.map((elem) => elem.name.includes(action.payload.genre)) &&
-    //       elem.name.toLowerCase().includes(action.payload.search)
-    //   );
-    //   if (aux) {
-    //     return {
-    //       ...state,
-    //       vidsList: aux,
-    //     };
-    //   } else {
-    //     return {
-    //       ...state,
-    //       vidsList: auxApi.filter((elem) =>
-    //         elem.name
-    //           .toLowerCase()
-    //           .includes(action.payload.search.toLowerCase())
-    //       ),
-    //     };
-    //   }
     case "CREATE_GAME":
       return {
         ...state,
@@ -75,11 +48,13 @@ export default function rootReducer(state = initialState, action) {
       };
     case "SELECT_DB":
       let helper = state.apiList;
+      let filterApiDb = helper.filter((elem) => typeof elem.id === "string");
       if (action.payload.name === "DB") {
-        let filterApiDb = helper.filter((elem) => typeof elem.id === "string");
         if (action.payload.search) {
           filterApiDb = filterApiDb.filter((elem) =>
-            elem.name.toLowerCase().includes(action.payload.search)
+            elem.name
+              .toLowerCase()
+              .includes(action.payload.search.toLowerCase())
           );
         }
         if (action.payload.genre) {
@@ -92,12 +67,15 @@ export default function rootReducer(state = initialState, action) {
           vidsList: filterApiDb,
         };
       } else if (action.payload.name === "Rawg") {
-        let filterApiRawg = helper.filter(
+        let auxiliary = state.apiList;
+        let filterApiRawg = auxiliary.filter(
           (elem) => typeof elem.id === "number"
         );
         if (action.payload.search) {
           filterApiRawg = filterApiRawg.filter((elem) =>
-            elem.name.toLowerCase().includes(action.payload.search)
+            elem.name
+              .toLowerCase()
+              .includes(action.payload.search.toLowerCase())
           );
         }
         if (action.payload.genre) {
