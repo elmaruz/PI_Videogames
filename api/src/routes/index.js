@@ -18,7 +18,7 @@ router.get("/videogames", async (req, res) => {
   if (!req.query.name) {
     arr1 = []; // clearing arr1 before each request
     let head = await axios.get(
-      `https://rawg.io/api/games?key=${APIKEY}&page_size=25`
+      `https://rawg.io/api/games?key=${APIKEY}&page=1&page_size=25`
     );
     let current = head.data; // api data structured as a linked list - assigning head to varible current
     pages.push(current); // pushing head's content (full page) to pages array - each page contains 20 games
@@ -51,7 +51,7 @@ router.get("/videogames", async (req, res) => {
     try {
       arr1 = [];
       let search = await axios.get(
-        `https://rawg.io/api/games?key=${APIKEY}&search=${req.query.name}&page_size=25`
+        `https://rawg.io/api/games?key=${APIKEY}&search=${req.query.name}`
       );
       let curr = search.data; // api data structured as a linked list - assigning head to varible current
       pages.push(curr); // pushing head's content (full page) to pages array - each page contains 20 games

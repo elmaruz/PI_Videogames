@@ -11,11 +11,8 @@ export default function CreateGame() {
   const api = useSelector((state) => state.apiList);
   const allPlatforms = api.map((elem) => elem.platforms);
   let platformsSet = new Set(allPlatforms.flat(Infinity));
-  let platforms = [];
+  let platforms = [...platformsSet];
   let errors = {};
-  for (let i of platformsSet) {
-    platforms.push(i);
-  }
   let [checkState, setCheckState] = useState({
     genres: new Array(genres.length).fill(false),
     platforms: new Array(platforms.length).fill(false),
@@ -27,7 +24,6 @@ export default function CreateGame() {
     genres: [],
     rating: 0,
     platforms: [],
-    price: "",
   });
   let [error, setError] = useState({
     name: "Name required",
