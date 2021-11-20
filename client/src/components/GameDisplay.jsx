@@ -114,18 +114,19 @@ export default function GameDisplay() {
 
   function onSort(value) {
     setSort(value);
-    setDb(value);
+    setDb(db);
   }
 
   function onFilterGen(value) {
     setGenre(value);
     setPage(0);
     setVars([0, 15]);
+    setDb(db);
   }
 
   function onRating(value) {
     setRatings(value);
-    setDb(value);
+    setDb(db);
   }
 
   function onDb(value) {
@@ -134,6 +135,9 @@ export default function GameDisplay() {
 
   return (
     <div className={`${styles.master}`}>
+      <div className={`${styles.banner}`}>
+        <div className={`${styles.bannerbox}`}>RetroDB</div>
+      </div>
       <div className={`${styles.macro}`}>
         <FilterDb db={db} onDb={onDb} />
         <SortAZ sort={sort} onSort={onSort} />

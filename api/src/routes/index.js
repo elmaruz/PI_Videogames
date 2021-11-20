@@ -17,12 +17,10 @@ router.get("/videogames", async (req, res) => {
   let arr1 = []; // arr1 used to store games
   if (!req.query.name) {
     arr1 = []; // clearing arr1 before each request
-    let head = await axios.get(
-      `https://rawg.io/api/games?key=${APIKEY}&page=1&page_size=25`
-    );
+    let head = await axios.get(`https://rawg.io/api/games?key=${APIKEY}`);
     let current = head.data; // api data structured as a linked list - assigning head to varible current
     pages.push(current); // pushing head's content (full page) to pages array - each page contains 20 games
-    while (count < 3) {
+    while (count < 4) {
       let getNext = await axios.get(current.next); // grab four more pages going through this linked list
       pages.push(getNext.data);
       current = getNext.data;
@@ -55,7 +53,7 @@ router.get("/videogames", async (req, res) => {
       );
       let curr = search.data; // api data structured as a linked list - assigning head to varible current
       pages.push(curr); // pushing head's content (full page) to pages array - each page contains 20 games
-      while (count < 3) {
+      while (count < 4) {
         let findNext = await axios.get(curr.next); // grab four more pages going through this linked list
         pages.push(findNext.data);
         curr = findNext.data;

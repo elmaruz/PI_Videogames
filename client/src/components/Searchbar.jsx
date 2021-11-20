@@ -24,12 +24,12 @@ export default function Searchbar({
   }
 
   function reset(e) {
-    setInput(e.target.value);
-    onSearch(e.target.value);
-    onSort(e.target.value);
-    onFilterGen(e.target.value);
-    onRating(e.target.value);
-    onDb(e.target.value);
+    setInput("");
+    onSearch("");
+    onSort("");
+    onFilterGen("");
+    onRating("");
+    onDb("");
   }
 
   function submitHandler(e) {
