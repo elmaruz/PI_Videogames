@@ -33,9 +33,9 @@ __IMPORTANT__: Using endpoints from the external API to filter or sort the resul
   - GET https://api.rawg.io/api/genres
   - GET https://api.rawg.io/api/games/{id}
 
-### Requerimientos mínimos:
+### Minimum requirements:
 
-The following sections describe the project's minimum requirements. Those who wish to add more features are free to do so.
+The following sections describe the project's minimum requirements.
 
 __IMPORTANT__: Using external libraries to apply styling is not allowed. CSS only.
 
@@ -123,12 +123,6 @@ Develop a server using Node/Express with the following routes:
 - [ ] __POST /videogame__:
   - Receives the data collected from the game creation controlled form
   - Create a videogame in the database
-
-
-#### Testing
-- [ ] Al menos tener un componente del frontend con sus tests respectivos
-- [ ] Al menos tener una ruta del backend con sus tests respectivos
-- [ ] Al menos tener un modelo de la base de datos con sus tests respectivos
 
 #### Testing
 - [ ] At least one front end component with tests
