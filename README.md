@@ -10,7 +10,7 @@
 
 ## Project Goals
 
-- Build a web app in three weeks using React, Redux, Node and Sequelize.
+- Build a web app using React, Redux, Node and Sequelize.
 - Consolidate and connect the concepts learnt throughout the course.
 - Learn best practices.
 - Practice the use of GIT.
