@@ -70,7 +70,7 @@ __Videogame detail route__: must include
 - [ ] Description
 - [ ] Release date
 - [ ] Rating
-- [ ] Plataforms
+- [ ] Platforms
 
 __Videogame creation route__: must include
 - [ ] A __controlled__ form with the following fields:
@@ -95,7 +95,7 @@ The database model will contain the following entities (those marked with an ast
   - Plataforms *
 - [ ] Genre with the following properties:
   - ID
-  - Nombre
+  - Name
 
 The kind of relationship between these entities will be many to many, given that a videogame can belong to many genres simultaneously and a genre can contain many different videogames.
 For example, the game 'Counter Strike' belongs to both the Action and Shooter genres. At the same time, other games are assigned to the Shooter or Action genre.
