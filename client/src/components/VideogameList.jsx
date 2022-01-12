@@ -7,8 +7,6 @@ export default function VideogameList({ vids, vars }) {
     <div className={`${styles.macro}`}>
       <div className={`${styles.container}`}>
         {vids &&
-          vids.length > 0 &&
-          vars &&
           vids.slice(vars[0], vars[1]).map((elem, index) => {
             if (elem.name !== 'Videogame not found') {
               return (
