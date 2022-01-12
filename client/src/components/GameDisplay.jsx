@@ -133,8 +133,6 @@ export default function GameDisplay() {
     setDb(value);
   }
 
-  console.log(vids);
-
   return (
     <div className={`${styles.master}`}>
       <div className={`${styles.banner}`}>
