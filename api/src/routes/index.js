@@ -17,9 +17,7 @@ router.get('/videogames', async (req, res) => {
   let arr1 = []; // arr1 used to store games
   if (!req.query.name) {
     arr1 = []; // clearing arr1 before each request
-    let head = await axios.get(
-      `https://rawg.io/api/games?key=578a831bc20d4b63a01009c5fcfa91f8`
-    );
+    let head = await axios.get(`https://rawg.io/api/games?key=${APIKEY}`);
     let current = head.data; // api data structured as a linked list - assigning head to varible current
     pages.push(current); // pushing head's content (full page) to pages array - each page contains 20 games
     while (count < 4) {
@@ -51,7 +49,7 @@ router.get('/videogames', async (req, res) => {
     try {
       arr1 = [];
       let search = await axios.get(
-        `https://rawg.io/api/games?key=578a831bc20d4b63a01009c5fcfa91f8&search=${req.query.name}`
+        `https://rawg.io/api/games?key=${APIKEY}&search=${req.query.name}`
       );
       let curr = search.data; // api data structured as a linked list - assigning head to varible current
       pages.push(curr); // pushing head's content (full page) to pages array - each page contains 20 games
@@ -133,9 +131,7 @@ router.get('/videogame/:id', (req, res) => {
 });
 
 router.get('/genres', async (req, res) => {
-  let genres = await axios.get(
-    `https://api.rawg.io/api/genres?key=578a831bc20d4b63a01009c5fcfa91f8`
-  );
+  let genres = await axios.get(`https://api.rawg.io/api/genres?key=${APIKEY}`);
   let genresList = genres.data.results.map((elem) => elem.name); // Just mapping out the names of genres
   let dbFind = await Genre.findAll(); // query to our Genres table
   let mappedGenres = genres.data.results.map((elem) => {
