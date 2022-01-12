@@ -19,9 +19,6 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
