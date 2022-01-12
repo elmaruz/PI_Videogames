@@ -135,7 +135,9 @@ router.get('/videogame/:id', (req, res) => {
 });
 
 router.get('/genres', async (req, res) => {
-  let genres = await axios.get(`https://api.rawg.io/api/genres?key=${APIKEY}`);
+  let genres = await axios.get(
+    `https://api.rawg.io/api/genres?key=578a831bc20d4b63a01009c5fcfa91f8`
+  );
   let genresList = genres.data.results.map((elem) => elem.name); // Just mapping out the names of genres
   let dbFind = await Genre.findAll(); // query to our Genres table
   let mappedGenres = genres.data.results.map((elem) => {
