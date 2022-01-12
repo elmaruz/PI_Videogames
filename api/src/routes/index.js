@@ -1,5 +1,3 @@
-import dotenv from 'dotenv';
-dotenv.config();
 const { Router } = require('express');
 const { Videogame, Genre } = require('../db.js');
 const axios = require('axios');
