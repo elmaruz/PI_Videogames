@@ -5,7 +5,7 @@
 }
 
 .master {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to bottom,
     rgb(0, 0, 0) 0%,
     rgb(0, 0, 0) 200%
@@ -15,7 +15,8 @@
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover; */
+  background-color: black;
 }
 
 .macro {

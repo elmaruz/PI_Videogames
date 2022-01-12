@@ -5,7 +5,7 @@ export default function VideogameList({ vids, vars }) {
   return (
     <div className={`${styles.macro}`}>
       <div className={`${styles.container}`}>
-        {vids &&
+        {vids.length > 0 ? (
           vids.slice(vars[0], vars[1]).map((elem, index) => {
             if (elem.name !== 'Videogame not found') {
               return (
@@ -26,7 +26,12 @@ export default function VideogameList({ vids, vars }) {
                 </div>
               );
             }
-          })}
+          })
+        ) : (
+          <div className={`${styles.macro}`}>
+            <h1 className={`${styles.error}`}>LOADING...</h1>
+          </div>
+        )}
       </div>
     </div>
   );
