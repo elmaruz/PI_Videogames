@@ -1,38 +1,38 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   getVids,
   searchVids,
   getGenres,
   filterGenres,
   selectDb,
-} from "../actions/index.js";
-import VideogameList from "./VideogameList";
-import Searchbar from "./Searchbar";
-import SortAZ from "./SortAZ.jsx";
-import FilterGen from "./FilterGen.jsx";
-import SortRating from "./SortRating.jsx";
-import FilterDb from "./FilterDb.jsx";
-import { Link } from "react-router-dom";
-import styles from "../css_modules/GameDisplay.module.css";
+} from '../actions/index.js';
+import VideogameList from './VideogameList';
+import Searchbar from './Searchbar';
+import SortAZ from './SortAZ.jsx';
+import FilterGen from './FilterGen.jsx';
+import SortRating from './SortRating.jsx';
+import FilterDb from './FilterDb.jsx';
+import { Link } from 'react-router-dom';
+import styles from '../css_modules/GameDisplay.module.css';
 
 export default function GameDisplay() {
   let vids = useSelector((state) => state.vidsList);
   const dispatch = useDispatch();
   let [page, setPage] = useState(0);
   let [vars, setVars] = useState([0, 15]);
-  let [search, setSearch] = useState("");
-  let [sort, setSort] = useState("");
-  let [genre, setGenre] = useState("");
-  let [ratings, setRatings] = useState("");
-  let [db, setDb] = useState("");
+  let [search, setSearch] = useState('');
+  let [sort, setSort] = useState('');
+  let [genre, setGenre] = useState('');
+  let [ratings, setRatings] = useState('');
+  let [db, setDb] = useState('');
 
   if (ratings && !sort) {
-    if (ratings === "ASC") {
+    if (ratings === 'ASC') {
       vids.sort(function (a, b) {
         return a.rating - b.rating;
       });
-    } else if (ratings === "DESC") {
+    } else if (ratings === 'DESC') {
       vids.sort(function (a, b) {
         return b.rating - a.rating;
       });
@@ -41,10 +41,10 @@ export default function GameDisplay() {
   if (sort && !ratings) {
     vids.sort((a, b) => {
       if (a.name.toLowerCase() > b.name.toLowerCase()) {
-        return sort === "ASC" ? 1 : -1;
+        return sort === 'ASC' ? 1 : -1;
       }
       if (a.name.toLowerCase() < b.name.toLowerCase()) {
-        return sort === "ASC" ? -1 : 1;
+        return sort === 'ASC' ? -1 : 1;
       }
       return 0;
     });
@@ -53,18 +53,18 @@ export default function GameDisplay() {
   if (sort && ratings) {
     vids.sort((a, b) => {
       if (a.name.toLowerCase() > b.name.toLowerCase()) {
-        return sort === "ASC" ? 1 : -1;
+        return sort === 'ASC' ? 1 : -1;
       }
       if (a.name.toLowerCase() < b.name.toLowerCase()) {
-        return sort === "ASC" ? -1 : 1;
+        return sort === 'ASC' ? -1 : 1;
       }
       return 0;
     });
-    if (ratings === "ASC") {
+    if (ratings === 'ASC') {
       vids.sort(function (a, b) {
         return a.rating - b.rating;
       });
-    } else if (ratings === "DESC") {
+    } else if (ratings === 'DESC') {
       vids.sort(function (a, b) {
         return b.rating - a.rating;
       });
@@ -82,7 +82,7 @@ export default function GameDisplay() {
     if (genre) {
       dispatch(filterGenres(genre));
     }
-    if (db === "DB" || db === "Rawg") {
+    if (db === 'DB' || db === 'Rawg') {
       dispatch(selectDb(db, search, genre));
     }
   }, [search, genre, db, sort, ratings, dispatch]);
@@ -133,6 +133,8 @@ export default function GameDisplay() {
     setDb(value);
   }
 
+  console.log(vids);
+
   return (
     <div className={`${styles.master}`}>
       <div className={`${styles.banner}`}>
@@ -150,7 +152,7 @@ export default function GameDisplay() {
           onDb={onDb}
         />
         <FilterGen genre={genre} onFilterGen={onFilterGen} />
-        <Link to="/create">
+        <Link to='/create'>
           <button className={`${styles.create}`}>Create Game</button>
         </Link>
       </div>

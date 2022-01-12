@@ -2,6 +2,7 @@ import Videogame from './Videogame.jsx';
 import styles from '../css_modules/VideogameList.module.css';
 
 export default function VideogameList({ vids, vars }) {
+  console.log(vids, vars);
   return (
     <div className={`${styles.macro}`}>
       <div className={`${styles.container}`}>
