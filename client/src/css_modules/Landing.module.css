@@ -6,29 +6,35 @@
 
 .landing {
   display: flex;
-  background-image: url("https://hdqwalls.com/wallpapers/super-mario-minimalism.jpg");
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  /* top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; */
+  background-image: url('https://hdqwalls.com/wallpapers/super-mario-minimalism.jpg');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-position: center;
+  background-size: cover;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 720px;
 }
 
 .linkbox {
   display: flex;
-  position: relative;
-  top: 175px;
-  left: 7px;
+
   border-style: solid;
   border-color: white;
   border-width: 3px;
-  height: 75px;
-  width: 200px;
+  height: 100%;
+  width: 100%;
   justify-content: center;
   align-items: center;
   background-color: rgb(241, 237, 22);
@@ -54,10 +60,28 @@
 .innerLink {
   color: rgb(0, 0, 0);
   font-family: PressStart2P;
-  font-size: 20px;
+  height: 90%;
+  width: 90%;
+  font-size: 120%;
   text-align: center;
 }
 
 .link {
+  position: relative;
+  top: 30%;
+  left: 1.5%;
+  height: 12%;
+  width: 15%;
+}
+
+.linklink {
   text-decoration: none;
+}
+
+@media screen and (max-width: 800px) {
+  .link {
+    width: 60%;
+    left: 5%;
+    top: 25%;
+  }
 }
