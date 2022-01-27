@@ -141,6 +141,11 @@ export default function GameDisplay() {
       <div className={`${styles.banner}`}>
         <div className={`${styles.banner_cont}`}>
           <div className={`${styles.bannerbox}`}>RetroDB</div>
+          <div className={styles.mob_create}>
+            <Link className={styles.mob_link} to='/create'>
+              <button className={`${styles.create}`}>Create Game</button>
+            </Link>
+          </div>
           <div className={styles.mob_icon}>
             <AiOutlineMenu
               size={28}
