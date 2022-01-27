@@ -1,7 +1,7 @@
 import Videogame from './Videogame.jsx';
 import styles from '../css_modules/VideogameList.module.css';
 
-export default function VideogameList({ vids, vars }) {
+export default function VideogameList({ vids, vars, nextPage, prevPage }) {
   return (
     <div className={`${styles.macro}`}>
       <div className={`${styles.vid_container}`}>
@@ -32,6 +32,14 @@ export default function VideogameList({ vids, vars }) {
             <h1>LOADING...</h1>
           </div>
         )}
+        <div className={`${styles.btn_box}`}>
+          <button className={`${styles.btn}`} onClick={prevPage}>
+            {`<`}
+          </button>
+          <button className={`${styles.btn}`} onClick={nextPage}>
+            {`>`}
+          </button>
+        </div>
       </div>
     </div>
   );
