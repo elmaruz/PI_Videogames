@@ -1,8 +1,8 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { createGame, getGenres, getVids } from "../actions/index.js";
-import styles from "../css_modules/Create.module.css";
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { createGame, getGenres, getVids } from '../actions/index.js';
+import styles from '../css_modules/Create.module.css';
 
 export default function CreateGame() {
   const history = useHistory();
@@ -18,20 +18,20 @@ export default function CreateGame() {
     platforms: new Array(platforms.length).fill(false),
   });
   let [input, setInput] = useState({
-    name: "",
-    description: "",
-    released: "",
+    name: '',
+    description: '',
+    released: '',
     genres: [],
     rating: 0,
     platforms: [],
   });
   let [error, setError] = useState({
-    name: "Name required",
-    description: "Description required",
-    released: "Date required",
-    genres: "Genre required",
-    platforms: "Platform required",
-    rating: "Rating must be higher than zero",
+    name: 'Name required',
+    description: 'Description required',
+    released: 'Date required',
+    genres: 'Genre required',
+    platforms: 'Platform required',
+    rating: 'Rating must be higher than zero',
   });
 
   useEffect(() => {
@@ -41,34 +41,34 @@ export default function CreateGame() {
 
   function validate(input) {
     if (input.name) {
-      errors.name = "";
+      errors.name = '';
     } else {
-      errors.name = "Name required";
+      errors.name = 'Name required';
     }
     if (input.description) {
-      errors.description = "";
+      errors.description = '';
     } else {
-      errors.description = "Description required";
+      errors.description = 'Description required';
     }
     if (input.released) {
-      errors.released = "";
+      errors.released = '';
     } else {
-      errors.released = "Date required";
+      errors.released = 'Date required';
     }
     if (input.rating > 0) {
-      errors.rating = "";
+      errors.rating = '';
     } else {
-      errors.rating = "Rating required";
+      errors.rating = 'Rating required';
     }
     if (input.genres.length > 0) {
-      errors.genres = "";
+      errors.genres = '';
     } else {
-      errors.genres = "Genre required";
+      errors.genres = 'Genre required';
     }
     if (input.platforms.length > 0) {
-      errors.platforms = "";
+      errors.platforms = '';
     } else {
-      errors.platforms = "Platform required";
+      errors.platforms = 'Platform required';
     }
     return errors;
   }
@@ -88,7 +88,7 @@ export default function CreateGame() {
         }
         return 0;
       })
-      .filter((elem) => typeof elem === "string");
+      .filter((elem) => typeof elem === 'string');
     setInput({ ...input, genres: genArr });
     setError(validate({ ...input, genres: genArr }));
   }
@@ -108,7 +108,7 @@ export default function CreateGame() {
         }
         return 0;
       })
-      .filter((elem) => typeof elem === "string");
+      .filter((elem) => typeof elem === 'string');
     setInput({ ...input, platforms: platArr });
     setError(validate({ ...input, platforms: platArr }));
   }
@@ -121,25 +121,26 @@ export default function CreateGame() {
   function onSubmit(e) {
     e.preventDefault();
     let checkObj = Object.values(error);
-    let checkArr = checkObj.filter((elem) => elem !== "");
+    let checkArr = checkObj.filter((elem) => elem !== '');
     console.log(checkArr);
     if (checkArr.length > 0) {
-      alert("Please fill in the required fields");
+      alert('Please fill in the required fields');
     } else {
       let newGame = {
         name: input.name,
         description: input.description,
         released: input.released,
         image:
-          "https://thumbs.dreamstime.com/b/video-game-controller-doodle-hand-drawn-vector-illustration-63395075.jpg",
+          'https://thumbs.dreamstime.com/b/video-game-controller-doodle-hand-drawn-vector-illustration-63395075.jpg',
         rating: input.rating,
         platforms: input.platforms,
         genres: input.genres,
       };
       dispatch(createGame(newGame));
-      history.push("/videogames");
+      history.push('/videogames');
     }
   }
+
   return (
     <div className={`${styles.macro}`}>
       <form className={`${styles.container}`} onSubmit={onSubmit}>
@@ -147,8 +148,8 @@ export default function CreateGame() {
           <label className={`${styles.label}`}>Name</label>
           <div>
             <input
-              type="text"
-              name="name"
+              type='text'
+              name='name'
               value={input.name}
               onChange={handleInput}
               className={`${error.name ? styles.error : styles.valid} ${
@@ -159,7 +160,7 @@ export default function CreateGame() {
           <label className={`${styles.label}`}>Description</label>
           <div>
             <textarea
-              name="description"
+              name='description'
               value={input.description}
               onChange={handleInput}
               className={`${error.description ? styles.error : styles.valid} ${
@@ -170,8 +171,8 @@ export default function CreateGame() {
           <label className={`${styles.label}`}>Released</label>
           <div>
             <input
-              type="date"
-              name="released"
+              type='date'
+              name='released'
               value={input.released}
               onChange={handleInput}
               className={`${error.released ? styles.error : styles.valid} ${
@@ -182,12 +183,12 @@ export default function CreateGame() {
           <label className={`${styles.label}`}>Rating</label>
           <div>
             <input
-              type="number"
-              name="rating"
+              type='number'
+              name='rating'
               value={input.rating}
               onChange={handleInput}
-              min="0"
-              max="5"
+              min='0'
+              max='5'
               className={`${error.rating ? styles.error : styles.valid} ${
                 styles.rate
               }`}
@@ -196,13 +197,16 @@ export default function CreateGame() {
         </div>
         <label className={`${styles.label}`}>Genre</label>
         <div className={`${styles.checksCont}`}>
-          <div className={`${styles.checksDiv}`}>
+          <div
+            className={`${
+              error.genres ? styles.checksDiv_err : styles.checksDiv
+            }`}>
             {genres.map((elem, index) => (
               <div key={elem + index} className={`${styles.checks}`}>
                 {elem.name}
                 <input
                   className={`${styles.checkbox}`}
-                  type="checkbox"
+                  type='checkbox'
                   name={elem.name}
                   value={elem.name}
                   onChange={() => handleGenre(index)}
@@ -211,23 +215,19 @@ export default function CreateGame() {
               </div>
             ))}
           </div>
-          <label
-            className={`${
-              error.genres ? styles.errorMsg : styles.errorMsgHide
-            }`}
-          >
-            Genre required
-          </label>
         </div>
         <label className={`${styles.label}`}>Platforms</label>
-        <div className={`${styles.checksCont} ${styles.plat}`}>
-          <div className={`${styles.checksDiv}`}>
+        <div className={`${styles.checksCont}`}>
+          <div
+            className={`${
+              error.platforms ? styles.checksDiv_err : styles.checksDiv_err
+            }`}>
             {platforms.map((elem, index) => (
               <div key={elem + index} className={`${styles.checks}`}>
                 {elem}
                 <input
                   className={`${styles.checkbox}`}
-                  type="checkbox"
+                  type='checkbox'
                   name={elem}
                   value={elem}
                   onChange={() => handlePlatform(index)}
@@ -236,15 +236,8 @@ export default function CreateGame() {
               </div>
             ))}
           </div>
-          <label
-            className={`${
-              error.platforms ? styles.errorMsg : styles.errorMsgHide
-            }`}
-          >
-            Platform required
-          </label>
         </div>
-        <button type="submit" className={`${styles.btn}`}>
+        <button type='submit' className={`${styles.btn}`}>
           Enter
         </button>
       </form>
