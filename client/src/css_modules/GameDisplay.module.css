@@ -55,7 +55,7 @@
   border-bottom-style: solid;
   border-width: 1px;
   border-color: rgb(73, 73, 73);
-  z-index: 1;
+  z-index: 2;
 }
 
 .banner_cont {
@@ -122,7 +122,7 @@
 
 .container {
   position: absolute;
-  top: 20%;
+  top: 25%;
   height: 100%;
   width: 100%;
   display: grid;
@@ -164,11 +164,11 @@
     height: 50%;
   }
   .banner {
-    height: 12%;
+    height: 15%;
   }
 
   .container {
-    top: 12%;
+    top: 16%;
   }
 
   .bannerbox {
@@ -188,7 +188,7 @@
   .hide0,
   .hide1,
   .hide2 {
-    visibility: collapse;
+    display: none;
   }
 
   .mob_icon {
@@ -197,20 +197,20 @@
 
   .mob_create {
     visibility: visible;
-    margin-right: 12%;
+    margin-right: 17%;
   }
 
   .create {
     display: flex;
     font-family: PressStart2P;
-    padding: 10px;
+    padding: 5px;
     background-color: red;
     color: white;
     border-width: 2px;
     border-style: solid;
     border-color: white;
     cursor: pointer;
-    height: 62%;
+    height: 55%;
     text-align: center;
     align-items: center;
   }

@@ -181,21 +181,22 @@ export default function GameDisplay() {
           </div>
         </div>
       </div>
+
+      {mobile ? (
+        <Menu
+          sort={sort}
+          onSort={onSort}
+          ratings={ratings}
+          onRating={onRating}
+          db={db}
+          onDb={onDb}
+          genre={genre}
+          onFilterGen={onFilterGen}
+        />
+      ) : (
+        ''
+      )}
       <div className={`${styles.container}`}>
-        {mobile ? (
-          <Menu
-            sort={sort}
-            onSort={onSort}
-            ratings={ratings}
-            onRating={onRating}
-            db={db}
-            onDb={onDb}
-            genre={genre}
-            onFilterGen={onFilterGen}
-          />
-        ) : (
-          ''
-        )}
         <VideogameList vids={vids} vars={vars} />
         <div className={`${styles.btn_box}`}>
           <button className={`${styles.btn}`} onClick={prevPage}>
