@@ -197,15 +197,20 @@ export default function GameDisplay() {
         ''
       )}
       <div className={`${styles.container}`}>
-        <VideogameList vids={vids} vars={vars} />
-        <div className={`${styles.btn_box}`}>
+        <VideogameList
+          vids={vids}
+          vars={vars}
+          prevPage={prevPage}
+          nextPage={nextPage}
+        />
+        {/* <div className={`${styles.btn_box}`}>
           <button className={`${styles.btn}`} onClick={prevPage}>
             {`<`}
           </button>
           <button className={`${styles.btn}`} onClick={nextPage}>
             {`>`}
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

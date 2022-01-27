@@ -141,6 +141,8 @@ export default function CreateGame() {
     }
   }
 
+  console.log(input);
+
   return (
     <div className={`${styles.macro}`}>
       <form className={`${styles.container}`} onSubmit={onSubmit}>
@@ -220,7 +222,7 @@ export default function CreateGame() {
         <div className={`${styles.checksCont}`}>
           <div
             className={`${
-              error.platforms ? styles.checksDiv_err : styles.checksDiv_err
+              error.platforms ? styles.checksDiv_err : styles.checksDiv
             }`}>
             {platforms.map((elem, index) => (
               <div key={elem + index} className={`${styles.checks}`}>
