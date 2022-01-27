@@ -1,0 +1,47 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* align-items: center; */
+  background-color: rgba(0, 0, 0, 0.85);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  color: whitesmoke;
+}
+
+.section {
+  display: flex;
+  width: 100%;
+  height: 15%;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.lab {
+  align-self: center;
+}
+
+.section_gen {
+  display: flex;
+  width: 100%;
+  height: 48%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub_gen {
+  height: 100%;
+}
+
+.section_sort {
+  display: flex;
+  width: 100%;
+  height: 12%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}

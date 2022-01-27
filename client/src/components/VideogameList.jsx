@@ -4,7 +4,7 @@ import styles from '../css_modules/VideogameList.module.css';
 export default function VideogameList({ vids, vars }) {
   return (
     <div className={`${styles.macro}`}>
-      <div className={`${styles.container}`}>
+      <div className={`${styles.vid_container}`}>
         {vids.length > 0 ? (
           vids.slice(vars[0], vars[1]).map((elem, index) => {
             if (elem.name !== 'Videogame not found') {
@@ -20,16 +20,16 @@ export default function VideogameList({ vids, vars }) {
               );
             } else {
               return (
-                <div>
-                  <h1 className={`${styles.error}`}>GAME OVER</h1>
-                  <h3 className={`${styles.error}`}>videogame not found</h3>
+                <div className={`${styles.error}`}>
+                  <h1>GAME OVER</h1>
+                  <h3>videogame not found</h3>
                 </div>
               );
             }
           })
         ) : (
-          <div className={`${styles.macro}`}>
-            <h1 className={`${styles.error}`}>LOADING...</h1>
+          <div className={`${styles.error}`}>
+            <h1>LOADING...</h1>
           </div>
         )}
       </div>
