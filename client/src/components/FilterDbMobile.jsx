@@ -7,7 +7,7 @@ export default function FilterDbMobile({ onDb, db }) {
   useEffect(() => {
     onDb(db);
     setValue(db);
-  }, [db]);
+  }, [db, onDb]);
 
   function onChangeHandler(e) {
     setValue(e.target.value);
