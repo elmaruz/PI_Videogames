@@ -9,7 +9,7 @@ export default function FilterGenMobile({ onFilterGen, genre }) {
   useEffect(() => {
     onFilterGen(genre);
     setValue(genre);
-  }, [genre, onFilterGen]);
+  }, [genre]);
 
   function onChangeHandler(e) {
     onFilterGen(e.target.value);
