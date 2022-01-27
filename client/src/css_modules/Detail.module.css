@@ -1,7 +1,8 @@
 .img {
-  width: 800px;
-  height: 500px;
-  margin: 20px;
+  width: 60.3333%;
+  height: 80%;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .box {
@@ -10,11 +11,14 @@
   justify-content: center;
   align-items: center;
   background-color: black;
+  height: 100%;
+  width: 100%;
 }
 
 .desc {
   margin: 10px;
   color: rgb(241, 237, 22);
+  width: 80%;
   align-self: center;
   margin-right: 5px;
 }
@@ -22,6 +26,7 @@
 .det {
   margin: 10px;
   color: rgb(241, 237, 22);
+  width: 80%;
 }
 
 .container {
@@ -29,10 +34,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 800px;
+  width: 60%;
+  height: 80%;
   border-style: solid;
   border-color: rgb(241, 237, 22);
   border-width: 3px;
   background-color: rgba(75, 75, 75, 0.5);
   margin-bottom: 20px;
+}
+
+@media screen and (max-width: 800px) {
+  .img {
+    height: 400px;
+    width: 90%;
+  }
+
+  .container {
+    width: 90%;
+  }
 }
