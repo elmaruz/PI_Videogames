@@ -1,5 +1,5 @@
 .menu {
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: center;
   /* align-items: center; */
