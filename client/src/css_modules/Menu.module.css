@@ -12,38 +12,72 @@
   color: whitesmoke;
 }
 
+.cont {
+  position: relative;
+  top: 10%;
+  height: 100%;
+  width: 100%;
+}
+
 .section {
   display: flex;
   width: 100%;
-  min-height: 15%;
+  /* min-height: 15%; */
   flex-direction: column;
-  /* align-items: center; */
-  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .lab {
   align-self: center;
+  /* margin-right: 10%; */
+  /* width: 100%; */
 }
 
 .section_gen {
   display: flex;
   width: 100%;
-  min-height: 48%;
+  /* min-height: 48%; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.sub_gen {
+/* .sub_gen {
   height: 100%;
+} */
+
+.section_cont {
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.section_sort {
-  display: flex;
+.icon {
+  align-self: center;
+  transition: all 0.1s;
+}
 
-  width: 100%;
-  min-height: 10%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+.icon_rot {
+  align-self: center;
+  transform: rotate(90deg);
+  transition: transform 0.1s;
+}
+
+.show {
+  display: block;
+  visibility: visible;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.hide {
+  display: block;
+  visibility: collapse;
+}
+
+.show_gen {
+  display: flex;
+  margin-bottom: 3%;
 }
