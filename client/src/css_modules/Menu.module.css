@@ -78,6 +78,6 @@
 }
 
 .show_gen {
-  display: flex;
+  display: block;
   margin-bottom: 3%;
 }
