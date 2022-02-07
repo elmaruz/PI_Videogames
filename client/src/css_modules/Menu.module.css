@@ -26,6 +26,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  margin-bottom: 10%;
 }
 
 .lab {
@@ -69,7 +70,7 @@
   display: block;
   visibility: visible;
   margin-top: 5%;
-  margin-bottom: 15%;
+  margin-bottom: 5%;
 }
 
 .hide {
