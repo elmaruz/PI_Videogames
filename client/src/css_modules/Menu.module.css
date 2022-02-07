@@ -14,7 +14,7 @@
 
 .cont {
   position: relative;
-  top: 10%;
+  top: 5%;
   height: 100%;
   width: 100%;
 }
@@ -26,7 +26,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 }
 
 .lab {
@@ -69,8 +69,8 @@
 .show {
   display: block;
   visibility: visible;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-top: 1%;
+  /* margin-bottom: 5%; */
 }
 
 .hide {
