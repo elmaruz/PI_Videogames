@@ -54,7 +54,7 @@ export default function Menu({
               />
             </div>
           </div>
-          <div className={press.genres ? s.show_gen : s.hide}>
+          <div className={press.genres ? s.show : s.hide}>
             <FilterGenMobile genre={genre} onFilterGen={onFilterGen} />
           </div>
         </div>
