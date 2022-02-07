@@ -77,7 +77,13 @@
   visibility: collapse;
 }
 
+.hide_gen {
+  display: none;
+  visibility: collapse;
+}
+
 .show_gen {
-  display: block;
+  display: flex;
+  visibility: visible;
   margin-bottom: 3%;
 }
