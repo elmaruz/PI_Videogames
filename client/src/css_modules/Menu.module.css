@@ -73,8 +73,9 @@
 }
 
 .hide {
-  display: block;
+  display: none;
   visibility: collapse;
+  height: 0%;
 }
 
 .hide_gen {
