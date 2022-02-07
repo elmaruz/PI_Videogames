@@ -95,4 +95,12 @@
     width: 80%;
     height: 40%;
   }
+
+  .upper {
+    height: 70%;
+  }
+
+  .lower {
+    height: 30%;
+  }
 }
