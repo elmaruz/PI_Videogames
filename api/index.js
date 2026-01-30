@@ -19,10 +19,29 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-let port = process.env.PORT || 3001;
-// Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(port, () => {
-    console.log('%s listening at 3000'); // eslint-disable-line no-console
+
+// Track if database has been synced (resets on cold start)
+let dbSyncPromise = null;
+
+const syncDatabase = () => {
+  if (!dbSyncPromise) {
+    dbSyncPromise = conn.sync({ force: true });
+  }
+  return dbSyncPromise;
+};
+
+// Vercel serverless handler
+module.exports = async (req, res) => {
+  await syncDatabase();
+  return server(req, res);
+};
+
+// Local development
+if (process.env.NODE_ENV !== 'production') {
+  const port = process.env.PORT || 3001;
+  conn.sync({ force: true }).then(() => {
+    server.listen(port, () => {
+      console.log(`Server listening on port ${port}`); // eslint-disable-line no-console
+    });
   });
-});
+}
