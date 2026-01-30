@@ -13,11 +13,10 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    { "src": "/videogames", "dest": "/api/index.js" },
-    { "src": "/videogame/(.*)", "dest": "/api/index.js" },
-    { "src": "/genres", "dest": "/api/index.js" },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/client/$1" }
+  "rewrites": [
+    { "source": "/videogames", "destination": "/api/index" },
+    { "source": "/videogame/:path*", "destination": "/api/index" },
+    { "source": "/genres", "destination": "/api/index" },
+    { "source": "/(.*)", "destination": "/client/$1" }
   ]
 }
