@@ -7,11 +7,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/index.js';
 import axios from 'axios';
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001';
+// In production (Vercel), use relative URLs (empty baseURL).
+// In development, proxy to local API on port 3001.
+if (process.env.NODE_ENV === 'development') {
+  axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001';
+}
 
 ReactDOM.render(
   <React.StrictMode>
