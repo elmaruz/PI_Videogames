@@ -1,5 +1,5 @@
-const server = require('../server/src/app.js');
-const { conn } = require('../server/src/db.js');
+const server = require('./src/app.js');
+const { conn } = require('./src/db.js');
 
 // Track if database has been synced (resets on cold start)
 let dbSyncPromise = null;

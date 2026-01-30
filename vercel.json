@@ -10,16 +10,13 @@
     },
     {
       "src": "api/index.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["server/**"]
-      }
+      "use": "@vercel/node"
     }
   ],
   "rewrites": [
-    { "source": "/videogames", "destination": "/api" },
-    { "source": "/videogame/:path*", "destination": "/api" },
-    { "source": "/genres", "destination": "/api" },
+    { "source": "/videogames", "destination": "/api/index" },
+    { "source": "/videogame/:path*", "destination": "/api/index" },
+    { "source": "/genres", "destination": "/api/index" },
     { "source": "/(.*)", "destination": "/client/$1" }
   ]
 }
